@@ -1,0 +1,26 @@
+Cole Hoener
+CS-283
+HW6
+5 March 2021
+
+~General Description:
+To follow the prompts in the HW6 instructions (questions from the book + 1 other).
+
+~Compiler:
+gcc
+
+to compile:
+gcc -o -pthread file.c csapp.c -o file.o
+./file.o
+
+~Requirements:
+GCC Compiler
+
+~Testing:
+I tested my code by manually going through it and then also running it to see the output.
+
+~Experience:
+This assignment was decent. Kind of like a puzzle to me so I had an okay time with it.
+
+~Suggestions:
+3rd quetion instructions a little unclear.

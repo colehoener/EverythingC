@@ -1,0 +1,22 @@
+Cole Hoener
+CS-283
+HW5
+12 Feburary 2021
+
+~General Description:
+To follow the prompts in the HW5 instructions (questions from the book).
+
+~Compiler:
+All text based answers. If compiling is needed then use gcc.
+
+~Requirements:
+GCC Compiler
+
+~Testing:
+I "tested" my answers just by tracing the code and writing down what I thought was happening and then doing it again to make sure. After I simply modified it, tested it by running it, and then knew my answers were correct.
+
+~Experience:
+This assignment was not as fun as last weeks. It felt much mroe tedious and where to find the answers was kind of ambiguous. I had to go back into the book a bit and found myself looking up how to handle seg faults to figure out the last question.
+
+~Suggestions:
+More guidance perhaps.

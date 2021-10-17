@@ -1,0 +1,22 @@
+Cole Hoener
+CS-281
+HW-4
+16 January 2021
+
+~General Description:
+To write C programs that follow the HW1 instructions.
+
+~Compiler:
+The compiler is gcc.
+
+~Requirements:
+No requirements needed. Just follow the input formats for the code as stated in the instructions for HW1. The programs are already compiled so you just need to ./FileName and then add any arguments required. (NOTE: There is not testing for lack or arguments provided).
+
+~Testing:
+The way I tested my code was to test any example inputs/outputs from the instructions. From there I tried some edge cases and even tried breaking my code. I was able to conclude from my testing that my code was correct. There may be some other test cases I did not think about but I feel like I got if not all then most of them.
+
+~Experience:
+I found this assignment really enjoyable. I enjoy  just having little code projects to work on. It is very rewarding once you are finished and everything works. The first question was harder than the others and took a significant amount of more time but it was because I just rushed in and did not sit down to think about it deeply.
+
+~Suggestions:
+Honestly I do not have much to suggest for this assignment. It was pretty straight forward and I knew exactly what needed to be done and how to do it after a little thought, Overall vey good assignment.

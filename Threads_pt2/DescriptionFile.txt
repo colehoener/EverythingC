@@ -1,0 +1,26 @@
+Cole Hoener
+CS-283
+HW7
+11 March 2021
+
+~General Description:
+To follow the prompts in the HW7 direction. (Edit a file toexcute a task).
+
+~Compiler:
+gcc
+
+to compile:
+gcc -o -pthread dotpr-hw.c csapp.c -o dotpr-hw.o
+./dotpr-hw.o
+
+~Requirements:
+GCC Compiler
+
+~Testing:
+I tested my code by manually going through it and then also running it to see the output.
+
+~Experience:
+This assignment was decent. Kind of like a puzzle to me so I had an okay time with it.
+
+~Suggestions:
+None

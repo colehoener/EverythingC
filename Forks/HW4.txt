@@ -1,0 +1,39 @@
+8.11)
+    Hello will be printed 4 times. This is because the Fork() command is called in
+    the loop twice, but each time Fork() is called it creates a new process so Fork()
+    is actually called 3 times. So the first run of the loop Forks just once, but
+    then 2 procceses are happening for the final loop call through so Fork() is called
+    twice. Since Those two final Forks are called, they each make 2 procceses, so the
+    rest of the code is ran 4 times resulting in 4 "Hellos".
+
+8.12)
+    Hello is printed 8 times. The logic follows the same as the previous question
+    but in a different order. Basically the program calls the function doit(),
+    which forks, so now there are two proccess and they both call Fork(), so now
+    there are 4 procceses that each print "Hello". The function ends but each
+    proccess is still excecuting so then another 4 "Hellos" are printed at line
+    14.
+
+8.13)
+    One possible output is "x=4" "x=3". This is because x starts at 3 and then Fork() is 
+    called creating two subprocceses. If we follow the first one, the if statment will
+    execute since the Fork does not equal 0. This results in x being 4 and printed. The
+    next print statment then subtracts 1 from x resulting in x being 3 again. (The other
+    proccess would result in x = 2).
+
+8.14)
+    Hello will be printed 3 times. This is because doit() is called which calls a Fork
+    created two procceses. The if statment is calledi n both procceses the first process
+    does not execute the if statment since the pid is not 0 so it just returns to the main
+    function and prints "Hello". The other process does execture the if statment so it
+    Forks again and both those procceses print "Hello" and then the program exits.
+
+8.16)
+    The output is "Counter = 2". So counter starts at 1, simple. The main function calls
+    a Fork and the new process which has a pid equal to 0 so the if statment is executed
+    resulting in counter decreasing by 1. The first process runs at the same time and
+    since its pid is not qual to 0 the else statment is executed. Wait(NULL) is called
+    so the first process waits for the new Fork to finish which it does at line 8. So
+    the first process continues on and incrmenets counter by 1 and prints it to the screen.
+    Each process is seperate from eachother so the forked process doesnt really mean much
+    since that counter decrement is isolated to the original process.

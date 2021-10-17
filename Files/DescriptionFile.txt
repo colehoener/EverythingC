@@ -1,0 +1,22 @@
+Cole Hoener
+CS-283
+Lab1
+23 January 2021
+
+~General Description:
+To follow the prompts in the HW2 instructions (mostly from the book).
+
+~Compiler:
+The compiler is gcc.
+
+~Requirements:
+csapp.h and csapp.c
+
+~Testing:
+I tested my code by simply running it until it was correct. I put simple print statments to check what ran or didnt during testing.
+
+~Experience:
+I found this assignment to have a lot of information that seemed mroe tedious than useful but thats how C usually is to me.
+
+~Suggestions:
+The instructions for tee where a little hard to understand at first.

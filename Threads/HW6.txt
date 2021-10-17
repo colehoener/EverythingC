@@ -1,0 +1,144 @@
+Cole Hoener
+CS-283
+HW6
+6 March 2021
+
+12.16)
+------------------------------------------
+#include "csapp.h"
+
+void *thread(void *vargp);
+
+int main(int argc, char **argv)
+{
+    int n;
+    int i = 0;
+    
+
+    //Argument checking
+    if (argc < 2)
+    {
+        printf("Not enough arguments. Program terminated.\n");
+        exit(0);
+    }
+    else if(argc > 2)
+    {
+        printf("Too many arguments. Program terminated.\n");
+        exit(0);
+    }
+
+    n = atoi(argv[1]);
+    pthread_t tid[n];
+
+    //Create n threads
+    for(i = 0; i < n; i++){
+        Pthread_create(&tid[i], NULL, thread, NULL);
+        Pthread_join(tid[i], NULL);
+    }
+    
+    exit(0);
+}
+
+void *thread(void *Vargp) /* Thread routine */
+{
+    printf("Hello, world!\n");
+    return NULL;
+}
+------------------------------------------
+
+For this question all you need to do is take the argument 'n' in and then
+run a for loop that creates a thread each time. You also need to change the 
+thread struct into an array of threads so it can be as many as needed.
+
+
+
+12.17)
+A) 
+Nothing prints because the process is terminated before it gets there.
+Basically when exit() is called, the thread is sleeping. Since exit() is 
+called, the process and every thread attached to the overall process is terminated 
+as well and because the thread was sleeping, it never got to call printf.
+
+B)
+If you use pthread_exit(NULL); instead of exit() the program works. the pthread exit 
+instead exits only the thread that calls it, in this case the main function. This
+allows any other threads that are running to continue to execute.
+
+
+
+Problem 3)
+------------------------------------------
+#include <pthread.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#define NUM_THREADS 8
+char *messages[NUM_THREADS];
+
+struct threadArg
+{
+    int taskNum;
+    char message[8];
+    int summation;
+};
+
+void *PrintHello(void *threadarg)
+{
+    int taskid, sum;
+    char *hello_msg;
+
+    //Creat struct for argument and get values from argument
+    struct threadArg * argument;
+    argument = (struct threadArg *) threadarg;
+    taskid = argument -> taskNum;
+    hello_msg = argument -> message;
+    sum = argument -> summation;
+
+    printf("Thread %d %s Sum=%d\n", taskid, hello_msg, sum);
+    pthread_exit(NULL);
+}
+int main(int argc, char *argv[])
+{
+    //Declare struct
+    struct threadArg * tA1;
+    pthread_t threads[NUM_THREADS];
+
+    int rc, t, sum;
+    sum = 0;
+    messages[0] = "Hello-0";
+    messages[1] = "Hello-1";
+    messages[2] = "Hello-2";
+    messages[3] = "Hello-3";
+    messages[4] = "Hello-4";
+    messages[5] = "Hello-5";
+    messages[6] = "Hello-6";
+    messages[7] = "Hello-7";
+
+    //Create instance of struct
+    tA1 = (struct threadArg *) calloc (1, sizeof(struct threadArg));
+    
+    for (t = 0; t < NUM_THREADS; t++)
+    {
+        sum = sum + t;
+
+        //Assign the correct values to the struct
+        tA1 -> taskNum = t;
+        strcpy(tA1 -> message, messages[t]);
+        tA1 -> summation = sum;
+
+        printf("Creating thread %d\n", t);
+
+        //Create thread and join so they finish efore another is run
+        pthread_create(&threads[t], NULL, PrintHello, (void * ) tA1);
+        pthread_join(threads[t], NULL);
+    }
+    pthread_exit(NULL);
+}
+------------------------------------------
+For this problem I just had to add a struct to hold all the values which
+would be passed to the thread function. I had to add calls to create the threads
+and join them. And I also had to ass some libraries to get everything to work.
+Within the thread function I just made it so the valeus to be printed accessed
+the values from the struct from the argument.
+
+

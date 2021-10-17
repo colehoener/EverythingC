@@ -1,0 +1,22 @@
+Cole Hoener
+CS-283
+HW4
+6 Feburary 2021
+
+~General Description:
+To follow the prompts in the HW4 instructions (questions from the book).
+
+~Compiler:
+No compiler required. All text based answers.
+
+~Requirements:
+None.
+
+~Testing:
+I "tested" my answers just by tracing the code and writing down what I thought was happening and then doing it again to make sure.
+
+~Experience:
+I found this assignment enjoyable because it was kind of like a puzzle to me. It was fun tracing each execution and process and seeing what the result was.
+
+~Suggestions:
+No suggestions.

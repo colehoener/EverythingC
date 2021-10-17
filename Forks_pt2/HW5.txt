@@ -1,0 +1,110 @@
+Cole Hoener
+CS-283
+HW5
+12 February 2021
+
+8.23)
+So the bug happens due to the child process and parent process interaction. So the parent process obviously gets the first 2 signals since it prints '2' at the end. The problem occurs of how the signals are sent. The signals do not form a queue but rather take up a single signal notifying bit. So The fist signal comes through fine and the parent process handles it. The second signal comes through and it put in the 'pending' bit. The problem occurs here. It is the fact that the parent handler blocks signals because it is handling the previous signal. This is why the program only prints '2', because the first signal comes through, then the second is put to opening, but each signal after try to also be put to pending but the pending bit is already stated to have a signal (the second one), so they never get through.
+
+8.24)
+#include "csapp.h"
+#define N 2
+
+int main()
+{
+    int status, i;
+    pid_t pid, new_pid;
+
+    /* Paarent creates N children */
+    for (i = 0; i < N; i++)
+        if ((pid[i] = Fork()) == 0)
+        { /* Child */
+            strcpy("Abnormal", "Text");
+            exit(100 + i);
+        }
+    
+    i = 0;
+    while ((new_pid = waitpid(pid[i++], % status, 0)) > 0)
+    {
+        if (WIFEXITED(status))
+            printf("child %d terminated normally with exit status=%d\n", pid, WEXITSTATUS(status));
+        else if (WIFSIGNALED(status))
+        {
+            printf("child %d terminated by signal %d: \n", retpid, SIGSEGV);
+            psignal(WTERMSIG(status), NULL);
+        }
+        else
+            printf("child %d terminated abnormally\n", pid);
+    }
+
+    /* The only normal termination is if there are no more children */
+    if (errno != ECHILD)
+        unix_error("waitpid error");
+
+    exit(0);
+}
+
+
+The thought process behind this one was to break the child process. To do that a simple string copy does the trick because it changes the memory allocations which obviously breaks the program. Only thing I had to add was the print statment for if it did break and then it was good to go.
+
+8.24 Additional Question)
+
+#include "csapp.h"
+#include <signal.h>
+#define N 2
+
+void childError(int signal, siginfo_t *si, void *arg)
+{
+    printf("Error: Child process sent segfault signal\n");
+    exit(404);
+}
+
+int main()
+{
+    int status, i;
+    pid_t pid, new_pid;
+
+    /* Paarent creates N children */
+    for (i = 0; i < N; i++)
+        if ((pid[i] = Fork()) == 0)
+        { /* Child */
+            if (i == N - 1) //Executes on first run. Creates signal handles for segmentation fault.
+            {
+                memset(&sigHandle, 0, sizeof(struct sigaction));
+                sigemptyset(&sigHandle.sa_mask);
+                sigHandle.sa_flags = SA_SIGINFO;
+                sigHanle.sa_sigaction = childError;
+                sigaction(SIGSEGV, &sigHandle, NULL);
+            }
+            strcpy("Abnormal", "Text");
+            exit(100 + i);
+        }
+
+    i = 0;
+
+    while ((new_pid = waitpid(pid[i++], % status, 0)) > 0)
+    {
+        if (WIFEXITED(status))
+            printf("child %d terminated normally with exit status=%d\n", pid, WEXITSTATUS(status));
+        else if (WIFSIGNALED(status))
+        {
+            printf("child %d terminated by signal %d: \n", retpid, SIGSEGV);
+            psignal(WTERMSIG(status), NULL);
+        }
+        else
+            printf("child %d terminated abnormally\n", pid);
+    }
+
+    /* The only normal termination is if there are no more children */
+    if (errno != ECHILD)
+        unix_error("waitpid error");
+
+    exit(0);
+}
+
+Output: 
+child 12538 terminated by signal 11 Segmentation fault
+Error: Child process sent segfault signal
+child 12539 terminated normally with exit status 404
+
+So all you had to do for this one is to create a signal handler for the child processes. The idea behind it is that for the last child provess (N -1) the segmentation handler is created and when the seg fault happens it called the function instead. I chose the error of 404 instead of anything else just cause it seemed fun (there is probalby a correct exit status for a seg fault).

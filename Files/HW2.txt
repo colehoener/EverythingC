@@ -1,0 +1,26 @@
+Cole Hoener
+CS-283
+HW2
+23 Januaray 2021
+
+*NOTE* C programs are located in their respective files
+
+10.6) The output to the program is "fd2 = 4". This is the output for a few reasons. 
+      fd2 is a declared as an integer so obviously it will be printed as an integer.
+      Secondly, it is readonly and 4 is the number of bytes of an int. So what is
+      really being printed is the size of fd2 as a variable.
+
+10.8) The logic behind it was to change the command line argument to an integeter and 
+      then run it through fstat (helpful hint from the questions suggested filename). 
+      The rest of the code is the same from the figure 10.10.
+
+10.10) The question says not to change nay of the code that is already there for this one
+       so I had to work around that. I added a conditional that checks if an argument was
+       supplied. If so, the argument is dumped into STDIN
+
+Tee) So for this problem I had diffuclty figuring it out. The code does not work as intended
+     (at least I don't think so) since I just take the tee.c file and thats what is writing.
+     trying to add more arguments to append to another text file from anothe source was too
+     many errors. Anyways, the basis of this code is just checking for the argument through
+     cases. If -a is there the code reads the file specified and writes it to the arguemnt file.
+     If not it just prints to the screen the specified static file. 
